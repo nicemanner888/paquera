@@ -3,10 +3,13 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "gulp",
+    "mocha": "mocha",
+    "start": "npm run start --prefix client",
+    "server": "npm run dev --prefix client",
+    "client": "npm run start --prefix client",
+    "dev": "npm run dev --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "@material-ui/core": "latest",
