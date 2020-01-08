@@ -1,0 +1,51 @@
+{
+  "name": "create-react-app",
+  "version": "4.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.5.1",
+    "agegate": "^3.0.0",
+    "animate.css": "^3.7.2",
+    "aos": "^2.3.4",
+    "buttercms": "^1.2.1",
+    "clsx": "latest",
+    "decentraland-ui": "^2.11.1",
+    "fg-loadcss": "^2.1.0",
+    "html-to-react": "^1.4.2",
+    "js-cookie": "^2.2.1",
+    "react": "latest",
+    "react-animate-on-scroll": "^2.1.5",
+    "react-device-detect": "^1.11.14",
+    "react-dom": "latest",
+    "react-instagram-embed": "^1.5.0",
+    "react-parallax": "^3.0.0",
+    "react-reveal": "^1.2.2",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "latest",
+    "react-scroll-horizontal": "^1.6.2",
+    "react-scroll-parallax": "^2.2.0",
+    "react-spring": "^8.0.27",
+    "slick-carousel": "^1.8.1",
+    "universal-cookie": "^4.0.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
