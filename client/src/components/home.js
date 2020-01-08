@@ -15,6 +15,7 @@ import PersistentDrawerRight from './navbarMain';
 import InstagramEmbed from 'react-instagram-embed';
 import ScrollAnimation from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
+import loading from './images/bottle.gif'
 import one from './images/green-bottle.png';
 import two from './images/blend-bottle.png';
 import three from './images/blue-bottle.png';
@@ -27,142 +28,160 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 
 class Home extends Component {
+  
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this.state = { isLoading: true }
+  }
 
   async componentDidMount() {
-      this.tryPlayVideo();
+    this.tryPlayVideo();
+  }
+
+  tryPlayVideo() {
+    setTimeout(() => {
+      if (this.player) {
+        this.player.play();
+        this.setState({isLoading: false});
+      }
+      else {
+        this.tryPlayVideo();
+        this.setState({isLoading: false});
+      }
+    }, 2000);
+  }
+
+  render() {
+    if (this.state.isLoading == true) {
+      return (
+        <Image src = {loading} style={{width: '100%', height: '100vh'}}></Image>
+      )
     }
+    else {
+      
+      return (
+        <main className="main-story" style={{ backgroundColor: 'white' }}>
 
-    tryPlayVideo() {
-      setTimeout(() => {
-        if (this.player)
-          this.player.play()
-        else
-          this.tryPlayVideo();
-      }, 5000);
-    }
+          <PersistentDrawerRight />
+          
+          {/* Hero unit */}
+          <div id="home-page">
 
-    render() {
+            <Container style={{ marginLeft: '10px' }}>
+              <video className='hero-image' width="100%" ref={ref => this.player = ref} preload={'none'} src={window.innerWidth >= 720 ? vid_pc : vid_mob} type="video/mp4" playsinline muted loop/>
+            </Container>
 
-    return (
-      <main className="main-story" style={{ backgroundColor: 'white' }}>
+          </div>
 
-        <PersistentDrawerRight />
-        
-        {/* Hero unit */}
-        <div id="home-page">
-
-          <Container style={{ marginLeft: '10px' }}>
-            <video className='hero-image' width="100%" ref={ref => this.player = ref} preload={'none'} src={window.innerWidth >= 720 ? vid_pc : vid_mob} type="video/mp4" playsinline muted loop/>
+          <Container>
+            <div style={{ height: '100vh' }} />
           </Container>
 
-        </div>
-
-        <Container>
-          <div style={{ height: '100vh' }} />
-        </Container>
-
-        <Container>
-        <Container style={{ border: '1px solid #e9e9e9', marginTop: '120px', marginBottom: '75px' }} >
-          <p id="p-home" style={{ textAlign: 'center' }}> Shop Now </p>
-          <Grid 
-            container
-            direction="row"
-            justify="space-between"
-            alignItems="center"
-            spacing={6}
-          >
-            <Grid item xs={12} sm={4}>
-              <Image src={one} style={{ width: '100%' }} className="img-to-zoom2" />
-              <p id="p-blog2" style={{ textAlign: 'center' }}> 100% ESPADÍN | JOVEN </p>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                <Grid item>
-                  <Button size="large" variant="contained" color="primary" id="button-custom2" style={{ backgroundColor: 'black' }}>
-                    Order Online
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Image src={two} style={{ width: '100%' }} className="img-to-zoom2" />
-              <p id="p-blog2" style={{ textAlign: 'center' }}> 80% ESPADÍN / 20% BARRIL | BLEND </p>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                <Grid item>
-                  <Button size="large" variant="contained" color="primary" id="button-custom2" style={{ backgroundColor: 'black' }}>
-                    Order Online
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Image src={three} style={{ width: '100%' }} className="img-to-zoom2" />
-              <p id="p-blog2" style={{ textAlign: 'center' }}> 100% BARRIL | PREMIUM </p>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                <Grid item>
-                  <Button size="large" variant="contained" color="primary" id="button-custom2" style={{ backgroundColor: 'black' }}>
-                    Order Online
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Container>
-      </Container>
-
-      <Divider />
-
-        <div style={{ paddingTop: '60px', paddingBottom: '75px' }} >
           <Container>
+          <Container style={{ border: '1px solid #e9e9e9', marginTop: '120px', marginBottom: '75px' }} >
+            <p id="p-home" style={{ textAlign: 'center' }}> Shop Now </p>
             <Grid 
               container
               direction="row"
-              spacing={9}
+              justify="space-between"
+              alignItems="center"
+              spacing={6}
             >
-              <Grid item xs={12} sm={12} md={6} style={{ scroll: 'none' }}>
-                <ScrollAnimation animateIn='fadeIn' duration={2}>
-                  <Typography variant="h2" align="left" color="textPrimary" gutterBottom>
-                    Our Mission
-                  </Typography>
-                  <Typography variant="h5" align="left" color="textSecondary" paragraph>
-                    Paquera is ethically produced by a group of Mezcaleros who have dedicated their life’s work to growing, harvesting, and bottling premium artisanal mezcal. By investing in the future of these young agave plants, we are investing in the future of these men.
-                  </Typography>
-                  <Button
-                    id="button-custom"
-                    variant="outlined"
-                    style={{ color: 'black', borderColor: 'black' }}
-                    color="primary"
-                    endIcon={<ArrowForwardIcon />}
-                  >
-                    Find out more
-                  </Button>
-                </ScrollAnimation>
+              <Grid item xs={12} sm={4}>
+                <Image src={one} style={{ width: '100%' }} className="img-to-zoom2" />
+                <p id="p-blog2" style={{ textAlign: 'center' }}> 100% ESPADÍN | JOVEN </p>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Grid item>
+                    <Button size="large" variant="contained" color="primary" id="button-custom2" style={{ backgroundColor: 'black' }}>
+                      Order Online
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={12} md={6} style={{ scroll: 'none' }}>
-                <ScrollAnimation animateIn='fadeIn' duration={2} delay={300}>
-                  <Image src={mission} className="story-image" />
-                </ScrollAnimation>
+              <Grid item xs={12} sm={4}>
+                <Image src={two} style={{ width: '100%' }} className="img-to-zoom2" />
+                <p id="p-blog2" style={{ textAlign: 'center' }}> 80% ESPADÍN / 20% BARRIL | BLEND </p>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Grid item>
+                    <Button size="large" variant="contained" color="primary" id="button-custom2" style={{ backgroundColor: 'black' }}>
+                      Order Online
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <Image src={three} style={{ width: '100%' }} className="img-to-zoom2" />
+                <p id="p-blog2" style={{ textAlign: 'center' }}> 100% BARRIL | PREMIUM </p>
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                >
+                  <Grid item>
+                    <Button size="large" variant="contained" color="primary" id="button-custom2" style={{ backgroundColor: 'black' }}>
+                      Order Online
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Container>
-        </div>
+        </Container>
 
-        <Footer />
-      </main>
-    );
+        <Divider />
+
+          <div style={{ paddingTop: '60px', paddingBottom: '75px' }} >
+            <Container>
+              <Grid 
+                container
+                direction="row"
+                spacing={9}
+              >
+                <Grid item xs={12} sm={12} md={6} style={{ scroll: 'none' }}>
+                  <ScrollAnimation animateIn='fadeIn' duration={2}>
+                    <Typography variant="h2" align="left" color="textPrimary" gutterBottom>
+                      Our Mission
+                    </Typography>
+                    <Typography variant="h5" align="left" color="textSecondary" paragraph>
+                      Paquera is ethically produced by a group of Mezcaleros who have dedicated their life’s work to growing, harvesting, and bottling premium artisanal mezcal. By investing in the future of these young agave plants, we are investing in the future of these men.
+                    </Typography>
+                    <Button
+                      id="button-custom"
+                      variant="outlined"
+                      style={{ color: 'black', borderColor: 'black' }}
+                      color="primary"
+                      endIcon={<ArrowForwardIcon />}
+                    >
+                      Find out more
+                    </Button>
+                  </ScrollAnimation>
+                </Grid>
+                <Grid item xs={12} sm={12} md={6} style={{ scroll: 'none' }}>
+                  <ScrollAnimation animateIn='fadeIn' duration={2} delay={300}>
+                    <Image src={mission} className="story-image" />
+                  </ScrollAnimation>
+                </Grid>
+              </Grid>
+            </Container>
+          </div>
+
+          <Footer />
+        </main>
+      );
+    }
   }
 }
 
