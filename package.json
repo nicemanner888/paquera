@@ -1,6 +1,10 @@
 {
-  "name": "create-react-app",
-  "version": "4.0.0",
+  "name": "paquera",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.3.0",
+    "npm": "6.4.1"
+  },
   "private": true,
   "scripts": {
     "test": "gulp",
